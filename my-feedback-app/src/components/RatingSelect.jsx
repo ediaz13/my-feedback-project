@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 function RatingSelect({select}) {
   const [selected, setSelected] = useState(0);
