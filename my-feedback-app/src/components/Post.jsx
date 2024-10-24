@@ -1,13 +1,24 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, Routes, Route } from "react-router-dom";
 
 function Post() {
-  const params = useParams();
+    const status = 200
+
+    const navigate = useNavigate()
+
+    const onClick = () => {
+        console.log('clicked')
+        navigate('/about')
+    }
+
+    if (status === 400) {
+        return <Navigate to="/notfound" />
+    }
 
   return (
     <div>
-      <h1>Post {params.id}</h1>
-      <p>Name: {params.name}</p>
+      <h1>POST</h1>
+      <button onClick={onClick}>Click me</button>
     </div>
   );
 }

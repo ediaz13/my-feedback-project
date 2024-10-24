@@ -45,6 +45,7 @@ function App() {
                 <Card>
                     <NavLink to="/" activeClassName='active'>Home</NavLink>
                     <NavLink to="/about" activeClassName='active'>About</NavLink>
+                    <NavLink to="/post/1/John" activeClassName='active'>Post</NavLink>
                 </Card>
 
                 <AboutIconLink />
