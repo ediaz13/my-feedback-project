@@ -1,11 +1,13 @@
 import React from 'react';
 import Card from './shared/Card';
 import Button from './shared/Button';
+import RatingSelect from "./RatingSelect";
 
 function FeedbackForm() {
   const [text, setText] = React.useState('');
   const [btnDisabled, setBtnDisabled] = React.useState(true);
   const [message, setMessage] = React.useState('');
+  const [rating, setRating] = React.useState(10);
 
   const handleTextChange = (e) => {
     if (text === '') {
@@ -14,20 +16,21 @@ function FeedbackForm() {
     } else if (text !== '' && text.trim().length <= 5) {
       setBtnDisabled(true);
       setMessage('Your review is too short');
-
     } else {
-        setBtnDisabled(false);
-        setMessage(null);
+      setBtnDisabled(false);
+      setMessage(null);
     }
 
     setText(e.target.value);
   };
 
-
   return (
     <Card>
       <form>
-        <h2>How would you rate your experience?</h2>
+        <h2>How would you rate your experience?
+        </h2>
+
+        <RatingSelect select={(rating) => setRating(rating)}/>
 
         <div className='input-group'>
           <input
@@ -41,11 +44,10 @@ function FeedbackForm() {
           </Button>
         </div>
 
-        {message && <div className="message">{message}</div>}
-
+        {message && <div className='message'>{message}</div>}
       </form>
     </Card>
   );
 }
 
-export default FeedbackForm
+export default FeedbackForm;
