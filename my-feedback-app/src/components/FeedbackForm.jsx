@@ -1,12 +1,29 @@
 import React from 'react';
 import Card from './shared/Card';
+import Button from './shared/Button';
 
 function FeedbackForm() {
   const [text, setText] = React.useState('');
+  const [btnDisabled, setBtnDisabled] = React.useState(true);
+  const [message, setMessage] = React.useState('');
 
   const handleTextChange = (e) => {
+    if (text === '') {
+      setBtnDisabled(true);
+      setMessage(null);
+    } else if (text !== '' && text.trim().length <= 5) {
+      setBtnDisabled(true);
+      setMessage('Your review is too short');
+
+    } else {
+        setBtnDisabled(false);
+        setMessage(null);
+    }
+
     setText(e.target.value);
   };
+
+
   return (
     <Card>
       <form>
@@ -19,11 +36,16 @@ function FeedbackForm() {
             placeholder='Write a review'
             value={text}
           />
-          <button type='submit'>Send</button>
+          <Button type='submit' isDisabled={btnDisabled}>
+            Send
+          </Button>
         </div>
+
+        {message && <div className="message">{message}</div>}
+
       </form>
     </Card>
   );
 }
 
-export default FeedbackForm;
+export default FeedbackForm
