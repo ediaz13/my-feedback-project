@@ -13,7 +13,7 @@ function FeedbackForm({handleAdd}) {
     if (text === '') {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (text !== '' && text.trim().length <= 5) {
+    } else if (text !== '' && text.trim().length <= 10) {
       setBtnDisabled(true);
       setMessage('Your review is too short');
     } else {
