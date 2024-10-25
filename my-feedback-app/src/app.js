@@ -1,7 +1,4 @@
-import { v4 as uuidv4 } from "uuid"
-import { useState } from "react"
 import Header from "./components/Header"
-import FeedBackData from "./data/FeedbackData"
 import FeedBackList from "./components/FeedBackList"
 import FeedbackStats from "./components/FeedbackStats"
 import FeedbackForm from "./components/FeedbackForm"
@@ -11,19 +8,6 @@ import AboutIconLink from "./components/AboutIconLink"
 import { FeedbackProvider } from "./context/FeedbackContext"
 
 function App() {
-    const [feedback, setFeedback] = useState(FeedBackData)
-
-    const addFeedback = (newFeedback) => {
-        newFeedback.id = uuidv4()
-        setFeedback([newFeedback, ...feedback])
-    }
-
-    const deleteFeedback = (id) => {
-        if (window.confirm('Are you sure you want to delete this feedback?')) {
-            setFeedback(feedback.filter((item) => item.id !== id))
-        }
-    }
-
     return (
         <FeedbackProvider>
         <Router>
@@ -32,9 +16,9 @@ function App() {
                 <Routes>
                     <Route exact path='/' element={
                         <>
-                            <FeedbackForm handleAdd={addFeedback} />
+                            <FeedbackForm />
                             <FeedbackStats />
-                            <FeedBackList handleDelete={deleteFeedback} />
+                            <FeedBackList />
                         </>
                     }></Route>
                     <Route path="/about" element={<AboutPage />} />
