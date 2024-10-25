@@ -1,9 +1,9 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useState } from 'react';
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
-    const [feedback, setFeedback] = useState([
+    const [feedback ] = useState([
         {
             id: '1',
             text: "This is an example feedback item",
