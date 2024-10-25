@@ -9,7 +9,7 @@ import FeedbackForm from "./components/FeedbackForm"
 import AboutPage from "./pages/AboutPage"
 import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom"
 import AboutIconLink from "./components/AboutIconLink"
-import Post from "./components/Post"
+import { FeedbackProvider } from "./context/FeedbackContext"
 
 function App() {
     const [feedback, setFeedback] = useState(FeedBackData)
@@ -26,6 +26,7 @@ function App() {
     }
 
     return (
+        <FeedbackProvider>
         <Router>
             <Header />
             <div className="container">
@@ -39,18 +40,17 @@ function App() {
                         </>
                     }></Route>
                     <Route path="/about" element={<AboutPage />} />
-                    <Route path="/post/:id/:name" element={<Post />} />
                 </Routes>
 
                 <Card>
                     <NavLink to="/" activeClassName='active'>Home</NavLink>
                     <NavLink to="/about" activeClassName='active'>About</NavLink>
-                    <NavLink to="/post/1/John" activeClassName='active'>Post</NavLink>
                 </Card>
 
                 <AboutIconLink />
             </div>
         </Router>
+        </FeedbackProvider>
     )
 }
 
